@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark glassmorphism theme */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 9%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Power BI Yellow/Gold accent */
+    --primary: 45 93% 58%;
+    --primary-foreground: 222 47% 6%;
+
+    /* Slate secondary */
+    --secondary: 217 33% 14%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Success green for connected states */
+    --accent: 142 76% 45%;
+    --accent-foreground: 222 47% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 18%;
+    --input: 217 33% 14%;
+    --ring: 45 93% 58%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --glass-bg: hsl(222 47% 9% / 0.7);
+    --glass-border: hsl(217 33% 22% / 0.6);
+    --glass-highlight: hsl(217 33% 30% / 0.3);
+    
+    --gradient-gold: linear-gradient(135deg, hsl(45 93% 58%), hsl(38 92% 50%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 45%), hsl(160 84% 39%));
+    --gradient-blue: linear-gradient(135deg, hsl(217 91% 60%), hsl(199 89% 48%));
+    
+    --shadow-glow-gold: 0 0 40px hsl(45 93% 58% / 0.15);
+    --shadow-glow-success: 0 0 30px hsl(142 76% 45% / 0.2);
+
+    --sidebar-background: 222 47% 7%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 45 93% 58%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 217 33% 14%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 18%;
+    --sidebar-ring: 45 93% 58%;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+  }
+
+  .glass-panel-highlight {
+    background: linear-gradient(135deg, var(--glass-bg), hsl(217 33% 12% / 0.5));
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+  }
+
+  .gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  .gradient-success {
+    background: var(--gradient-success);
+  }
+
+  .gradient-text-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-gold {
+    box-shadow: var(--shadow-glow-gold);
+  }
+
+  .glow-success {
+    box-shadow: var(--shadow-glow-success);
+  }
+
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  .status-dot-connected {
+    @apply bg-accent;
+    box-shadow: 0 0 8px hsl(142 76% 45% / 0.6);
+  }
+
+  .status-dot-disconnected {
+    @apply bg-muted-foreground;
+  }
+
+  .status-dot-warning {
+    @apply bg-primary;
+    box-shadow: 0 0 8px hsl(45 93% 58% / 0.6);
+  }
+
+  /* Chat message styling */
+  .chat-message-user {
+    @apply bg-secondary rounded-2xl rounded-br-md;
+  }
+
+  .chat-message-assistant {
+    @apply glass-panel rounded-2xl rounded-bl-md;
+  }
+
+  /* Code block styling */
+  .code-block {
+    @apply bg-background/80 rounded-lg p-4 font-mono text-sm overflow-x-auto border border-border;
+  }
+
+  /* Scrollbar styling */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+
+  /* Data table styling */
+  .data-table {
+    @apply w-full text-sm;
+  }
+
+  .data-table th {
+    @apply px-4 py-2 text-left font-medium text-muted-foreground bg-secondary/50 first:rounded-tl-lg last:rounded-tr-lg;
+  }
+
+  .data-table td {
+    @apply px-4 py-2 border-t border-border;
+  }
+
+  .data-table tr:hover td {
+    @apply bg-secondary/30;
+  }
+}
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+
+  @keyframes typing {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  .typing-indicator span {
+    animation: typing 1.4s infinite;
+  }
+
+  .typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+}

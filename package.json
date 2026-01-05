@@ -1,0 +1,37 @@
+{
+  "name": "power-bi-insights-hub",
+  "version": "1.0.0",
+  "description": "AI-Powered Power BI Expert - Full Stack Application",
+  "private": true,
+  "scripts": {
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && pip install -r requirements.txt",
+    "install": "npm run install:frontend",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && python web_ui.py",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build": "cd frontend && npm run build",
+    "preview": "cd frontend && npm run preview",
+    "lint": "cd frontend && npm run lint"
+  },
+  "keywords": [
+    "power-bi",
+    "dax",
+    "ai",
+    "analytics",
+    "natural-language"
+  ],
+  "author": "Sulaiman Ahmed",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sulaiman013/power-bi-insights-hub.git"
+  }
+}
