@@ -221,6 +221,43 @@ VITE_API_URL=http://localhost:5050/api
 
 ---
 
+## Building Windows Installer
+
+Create a distributable `.exe` installer for end users.
+
+### Prerequisites for Building
+
+- **Python 3.10+** with pip
+- **Node.js 18+** with npm
+- **Inno Setup 6** - Download from [jrsoftware.org](https://jrsoftware.org/isdl.php)
+
+### Build Steps
+
+```bash
+# 1. Run the build script (creates dist/PowerBI_Insights_Hub/)
+build.bat
+
+# 2. Create the installer (requires Inno Setup)
+cd installer
+build_installer.bat
+```
+
+### Output
+
+After building, you'll have:
+- `dist/PowerBI_Insights_Hub/` - Portable version (can be distributed as .zip)
+- `dist/PowerBI_Insights_Hub_Setup_1.0.0.exe` - Windows installer
+
+### Distribution Options
+
+| Method | Description |
+|--------|-------------|
+| **Windows Installer** | `.exe` file that installs to Program Files |
+| **Portable .zip** | Zip the `dist/PowerBI_Insights_Hub/` folder |
+| **GitHub Releases** | Upload installer to GitHub Releases page |
+
+---
+
 ## Contributing
 
 1. Fork the repository
